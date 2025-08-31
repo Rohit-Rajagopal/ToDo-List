@@ -24,8 +24,22 @@ class DomManager {
         for (let item in project.toDoList) {
             let li = document.createElement('li');
             li.textContent = `${item}  Due Date:${project.toDoList[item].dueDate}`;
+            li.setAttribute('data-name', item);
+            li.setAttribute('data-clicked', false);
             ol.appendChild(li);
         }
+        ol.addEventListener('click', (e) => {
+            if (e.target.nodeName === 'LI') {
+                if (e.target.dataset.clicked === 'false') {
+                    e.target.innerHTML += `<br> Description: ${project.toDoList[e.target.dataset.name].description}`;
+                    e.target.dataset.clicked = 'true';
+                }
+                else {
+                    e.target.textContent = `${e.target.dataset.name}  Due Date:${project.toDoList[e.target.dataset.name].dueDate}`;
+                    e.target.dataset.clicked = 'false';
+                }
+            }
+        });
         this.content.appendChild(h2);
         this.content.appendChild(ol);
     }
