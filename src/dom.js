@@ -1,12 +1,18 @@
 class DomManager {
     content = document.querySelector('#content');
     projectSelector = document.querySelector('#project-selector');
+
     newProjDialog = document.querySelector('.newProjectForm');
     newProjConfirm = document.querySelector('.confirm-proj-name');
-    newProjButton = document.querySelector('.create-proj')
+    newProjButton = document.querySelector('.create-proj');
+
+    newItemDialog = document.querySelector('.newItemDialog');
+    newItemButton = document.querySelector('.newItemButton');
+    newItemConfirm = this.newItemDialog.querySelector('button');
 
     constructor() {
-        this.newProjButton.addEventListener('click', () => {this.newProjForm()})
+        this.newProjButton.addEventListener('click', () => {this.newProjForm()});
+        this.newItemButton.addEventListener('click', () => {this.newItemForm()});
     }
 
     showProject(project) {
@@ -35,6 +41,13 @@ class DomManager {
         this.newProjDialog.showModal();
         this.newProjConfirm.addEventListener('click', () => {
             this.newProjDialog.close()
+        })
+    }
+
+    newItemForm() {
+        this.newItemDialog.showModal();
+        this.newItemConfirm.addEventListener('click', () => {
+            this.newItemDialog.close()
         })
     }
 }

@@ -18,5 +18,29 @@
     <div id="content">
         
     </div>
+    <dialog class="newItemDialog">
+        <form action="" method="post" id="newItemForm">
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" required>
+            <br>
+            <label for="description">Description: </label> 
+            <br>
+            <textarea name="description" rows="3" cols ="30" id="description"></textarea>
+            <br>
+            <label for="dueDate">Due Date: </label>
+            <input type="text" name="dueDate" id="dueDate">
+            <br>
+            <label for="priority">Priority: </label>
+            <select name="priority" id="priority">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <button type="submit">Create Item</button>
+        </form>
+    </dialog>
+    <button class="newItemButton">Add item</button>
 </body>
 </html>
