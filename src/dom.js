@@ -31,7 +31,14 @@ class DomManager {
         ol.addEventListener('click', (e) => {
             if (e.target.nodeName === 'LI') {
                 if (e.target.dataset.clicked === 'false') {
-                    e.target.innerHTML += `<br> Description: ${project.toDoList[e.target.dataset.name].description}`;
+                    e.target.innerHTML += `<br> Description: ${project.toDoList[e.target.dataset.name].description} <br>`;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'DELETE';
+                    deleteButton.addEventListener('click', () => {
+                        delete project.toDoList[e.target.dataset.name];
+                        e.target.remove();
+                    });
+                    e.target.appendChild(deleteButton);
                     e.target.dataset.clicked = 'true';
                 }
                 else {
