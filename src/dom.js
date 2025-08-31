@@ -10,6 +10,8 @@ class DomManager {
     newItemButton = document.querySelector('.newItemButton');
     newItemConfirm = this.newItemDialog.querySelector('button');
 
+    editForm = document.querySelector('#newItemForm');
+
     constructor() {
         this.newProjButton.addEventListener('click', () => {this.newProjForm()});
         this.newItemButton.addEventListener('click', () => {this.newItemForm()});
@@ -23,7 +25,7 @@ class DomManager {
         const ol = document.createElement('ol');
         for (let item in project.toDoList) {
             let li = document.createElement('li');
-            li.textContent = `${item}  Due Date:${project.toDoList[item].dueDate}`;
+            li.textContent = `${project.toDoList[item].title}  Due Date:${project.toDoList[item].dueDate}`;
             li.setAttribute('data-name', item);
             li.setAttribute('data-clicked', false);
             ol.appendChild(li);
@@ -38,6 +40,12 @@ class DomManager {
                         delete project.toDoList[e.target.dataset.name];
                         e.target.remove();
                     });
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'EDIT';
+                    editButton.addEventListener('click', () => {
+                        this.editItemForm(project, project.toDoList[e.target.dataset.name]);
+                    });
+                    e.target.appendChild(editButton);
                     e.target.appendChild(deleteButton);
                     e.target.dataset.clicked = 'true';
                 }
@@ -70,6 +78,20 @@ class DomManager {
         this.newItemConfirm.addEventListener('click', () => {
             this.newItemDialog.close()
         })
+    }
+
+    editItemForm(project, item) {
+        const title = document.querySelector('#title');
+        const desc = document.querySelector('#description');
+        const date = document.querySelector('#dueDate');
+        const priority = document.querySelector('#priority');
+        title.value = item.title;
+        desc.textContent = item.description;
+        date.value = item.date;
+        console.log(item)
+        priority.value = parseInt(item.value);
+        delete project.toDoList[item.title];
+        this.newItemForm();
     }
 }
 
