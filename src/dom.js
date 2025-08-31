@@ -21,9 +21,9 @@ class DomManager {
         const h2 = document.createElement('h2');
         h2.textContent = `${project.title}`
         const ol = document.createElement('ol');
-        for (let item of project.toDoList) {
+        for (let item in project.toDoList) {
             let li = document.createElement('li');
-            li.textContent = `${item.title}  Due Date:${item.dueDate}`;
+            li.textContent = `${item}  Due Date:${project.toDoList[item].dueDate}`;
             ol.appendChild(li);
         }
         this.content.appendChild(h2);

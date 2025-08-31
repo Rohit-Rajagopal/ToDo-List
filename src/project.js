@@ -1,12 +1,12 @@
 class Project {
-    toDoList = [];
+    toDoList = {};
 
     constructor(title) {
         this.title = title;
     }
 
     addItem(toDoItem) {
-        this.toDoList.push(toDoItem);
+        this.toDoList[toDoItem.title] = toDoItem;
     }
 }
 
