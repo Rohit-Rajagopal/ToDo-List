@@ -1,46 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>To Do List</h1>
-        <select name="project-selector" id="project-selector"></select>
-        <dialog class="newProjectForm">
-            <input type="text" class="proj-name">
-            <button class="confirm-proj-name">Create</button>
-        </dialog>
-        <button class="create-proj">New Project</button>
+      <h1>To Do List</h1>
+      <select name="project-selector" id="project-selector"></select>
+      <dialog class="newProjectForm">
+        <input type="text" class="proj-name" />
+        <button class="confirm-proj-name">Create</button>
+      </dialog>
+      <button class="create-proj">New Project</button>
     </header>
-    <div id="content">
-        
-    </div>
+    <div id="content"></div>
     <dialog class="newItemDialog">
-        <form action="" method="post" id="newItemForm">
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title" required>
-            <br>
-            <label for="description">Description: </label> 
-            <br>
-            <textarea name="description" rows="3" cols ="30" id="description"></textarea>
-            <br>
-            <label for="dueDate">Due Date: </label>
-            <input type="date" name="dueDate" id="dueDate">
-            <br>
-            <label for="priority">Priority: </label>
-            <select name="priority" id="priority">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <br>
-            <button type="submit">Create Item</button>
-        </form>
+      <form action="" method="post" id="newItemForm">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" required />
+        <br />
+        <label for="description">Description: </label>
+        <br />
+        <textarea
+          name="description"
+          rows="3"
+          cols="30"
+          id="description"
+        ></textarea>
+        <br />
+        <label for="dueDate">Due Date: </label>
+        <input type="date" name="dueDate" id="dueDate" />
+        <br />
+        <label for="priority">Priority: </label>
+        <select name="priority" id="priority">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <br />
+        <button type="submit">Create Item</button>
+      </form>
     </dialog>
     <button class="newItemButton">Add item</button>
-</body>
+  </body>
 </html>
