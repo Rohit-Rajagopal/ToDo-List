@@ -1,10 +1,12 @@
 import {Project, ToDoItem} from './project.js';
 import { DomManager } from './dom.js';
+import { StorageManager } from './storage.js';
 
 
 class Manager {
     projects = {};
     domManager = new DomManager();
+    storageManager = new StorageManager();
     curProj = null;
     projectSelector = document.querySelector('#project-selector')
     newProjName = document.querySelector('.proj-name');
@@ -12,9 +14,14 @@ class Manager {
     newItemForm = document.querySelector('#newItemForm');
 
     constructor() {
-        this.projects['Default'] = new Project('Default');
-        this.domManager.addProject('Default');
-        this.domManager.showProject(this.projects['Default'])
+        if (this.storageManager.storageAvailable() && this.storageManager.dataStored()) {
+            this.loadProjects(this.storageManager.loadData());
+        }
+        else {
+            this.projects['Default'] = new Project('Default');
+            this.domManager.addProject('Default');
+        }
+        this.domManager.showProject(this.projects['Default']);
         this.curProj = 'Default';
         this.projectSelector.addEventListener('change', (e) => {
             this.domManager.showProject(this.projects[this.projectSelector.value]);
@@ -40,6 +47,26 @@ class Manager {
         this.projects[this.curProj].addItem(item);
         this.domManager.showProject(this.projects[this.curProj]);
     }
+
+    loadProjects(projObj) {
+        for (let proj in projObj) {
+            this.projects[proj] = new Project(proj);
+            this.domManager.addProject(proj);
+            for (let item of projObj[proj]) {
+                let newItem = new ToDoItem(
+                    item.title,
+                    item.description,
+                    item.dueDate,
+                    item.priority,
+                )
+                this.projects[proj].addItem(newItem);
+            }
+        }
+    }
 }
 
 const manager = new Manager();
+
+window.addEventListener("beforeunload", () => {
+    manager.storageManager.storeData(manager.projects);
+});
