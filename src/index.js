@@ -1,7 +1,7 @@
 import {Project, ToDoItem} from './project.js';
 import { DomManager } from './dom.js';
 import { StorageManager } from './storage.js';
-
+import './styles.css';
 
 class Manager {
     projects = {};
